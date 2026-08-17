@@ -70,14 +70,14 @@ fn main() {
                     if !output.status.success() {
                         eprintln!("actool stderr: {}", String::from_utf8_lossy(&output.stderr));
                         eprintln!("actool stdout: {}", String::from_utf8_lossy(&output.stdout));
-                        panic!("actool failed to compile icon");
+                        println!("cargo:warning=actool failed to compile icon; using fallback icon resources");
+                    } else {
+                        println!("Successfully compiled icon to {}", gen_dir);
                     }
-                    println!("Successfully compiled icon to {}", gen_dir);
                 }
                 Err(e) => {
                     eprintln!("Failed to execute xcrun actool: {}", e);
-                    eprintln!("Make sure you have Xcode Command Line Tools installed");
-                    panic!("Icon compilation failed");
+                    println!("cargo:warning=actool is unavailable; using fallback icon resources");
                 }
             }
 
