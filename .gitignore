@@ -63,6 +63,7 @@ nul
 tmp/
 temp/
 *.tmp
+local-experiments/**/*.wav
 
 # E2E test artifacts
 backend/tests/results/
